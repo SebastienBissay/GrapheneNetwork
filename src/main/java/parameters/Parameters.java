@@ -6,7 +6,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 public final class Parameters {
-    public static final long SEED = 11;
+    public static final long SEED = 42;
+    public static final int WIDTH = 2000;
+    public static final int HEIGHT = 2000;
+    public static final int MARGIN = 100;
+    public static final int MAXIMUM_LINKS = 5;
+    public static final float MAXIMUM_DISTANCE = 50f;
+    public static final int NUMBER_OF_VERTICES = 300;
+    public static final float INITIAL_MAXIMUM_RADIUS = .45f * WIDTH;
+    public static final float RADIUS_POWER = .45f;
+    public static final float CELL_SIZE = 50f;
+    public static final float TRIES_FACTOR = 10f;
+    public static final float RADIUS_FACTOR = .075f;
+    public static final float SPEED_REDUCTION = 100f;
+    public static final float MAXIMUM_SPEED = 100;
+    public static final float MAXIMUM_ITERATIONS = 1000;
+    public static final Color BACKGROUND_COLOR = new Color(240, 235, 230);
+    public static final Color STROKE_COLOR = new Color(20, 30, 40, 10);
+    public static final Color FILL_COLOR = new Color(240, 235, 230, 51);
 
     /**
      * Helper method to extract the constants in order to save them to a json file
@@ -17,7 +34,7 @@ public final class Parameters {
         Map<String, Object> map = new HashMap<>();
 
         Field[] declaredFields = Parameters.class.getDeclaredFields();
-        for(Field field : declaredFields) {
+        for (Field field : declaredFields) {
             field.setAccessible(true);
             map.put(field.getName(), field.get(Parameters.class));
         }
@@ -25,7 +42,7 @@ public final class Parameters {
         return Collections.singletonMap(Parameters.class.getSimpleName(), map);
     }
 
-    public record Color (float red, float green, float blue, float alpha) {
+    public record Color(float red, float green, float blue, float alpha) {
         public Color(float red, float green, float blue) {
             this(red, green, blue, 255);
         }
